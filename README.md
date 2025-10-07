@@ -5,9 +5,10 @@ Versi lanjutan untuk menjalankan beberapa Mawari Guardian Node di satu GitHub Co
 ## Requirements
 
 ### Repository Secrets (GitHub Codespaces)
-Pastikan 2 secret ini diatur (diotomatiskan oleh `setup-helper.ps1`).
+Pastikan 3 secret ini diatur.
 
-| Secret Name | Description |
-|---|---|
-| `MAWARI_OWNER_ADDRESS_MULTI` | Daftar alamat Ethereum pemilik node, dipisahkan koma. |
-| `MAWARI_SEED_PHRASE` | Satu frasa sandi (seed phrase) 12 atau 24 kata. |
+| Secret Name | Description | Example |
+|---|---|---|
+| `OWNERS_CS1` | Daftar 6 owner address pertama, dipisahkan koma. | `0xOwner1...,0xOwner2...` |
+| `OWNERS_CS2` | Daftar 6 owner address berikutnya, dipisahkan koma. | `0xOwner7...,0xOwner8...` |
+| `SEED_PHRASE` | Satu frasa sandi (seed phrase) 12 atau 24 kata. | `word1 word2 ... word12` |
