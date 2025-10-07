@@ -1,0 +1,13 @@
+{
+  "name": "Mawari Multi-Wallet Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y curl wget jq && bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash' && export NVM_DIR=\"$HOME/.nvm\" && [ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\" && nvm install 18 && npm install -g ethers && chmod +x /workspaces/mawari-multi-wallet/*.sh && bash /workspaces/mawari-multi-wallet/first-setup.sh",
+  "postAttachCommand": "bash /workspaces/mawari-multi-wallet/auto-start.sh",
+  "remoteUser": "vscode"
+}
