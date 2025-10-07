@@ -1,11 +1,13 @@
 # Mawari Multi-Wallet Node Blueprint
 
-Versi lanjutan untuk menjalankan beberapa Mawari Guardian Node di satu GitHub Codespace (4-core).
+Versi lanjutan yang dirancang untuk menjalankan 6 node Mawari Guardian di dalam satu GitHub Codespace (4-core), dan dapat di-deploy ganda oleh orkestrator untuk total 12 node.
 
-## Requirements
+---
+
+## 📋 Requirements
 
 ### Repository Secrets (GitHub Codespaces)
-Pastikan 3 secret ini diatur.
+Pastikan 3 secret ini diatur di pengaturan Codespaces repositori ini.
 
 | Secret Name | Description | Example |
 |---|---|---|
