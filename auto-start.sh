@@ -11,19 +11,19 @@ echo "║      MAWARI MULTI-WALLET AUTO START           ║"
 echo "╚════════════════════════════════════════════════╝"
 echo "📅 $(date '+%Y-%m-%d %H:%M:%S')"
 
-# Deteksi codespace mana yang sedang berjalan
+# Deteksi codespace mana yang sedang berjalan untuk validasi
 if [[ "$CODESPACE_NAME" == *"-1"* ]]; then
-    OWNER_SECRET="$OWNERS_CS1"
+    OWNER_SECRET_CHECK="$OWNERS_CS1"
     echo "🔍 Terdeteksi sebagai Codespace 1."
 elif [[ "$CODESPACE_NAME" == *"-2"* ]]; then
-    OWNER_SECRET="$OWNERS_CS2"
+    OWNER_SECRET_CHECK="$OWNERS_CS2"
     echo "🔍 Terdeteksi sebagai Codespace 2."
 else
     echo "❌ ERROR: Tidak dapat menentukan grup owner (CS1 atau CS2) dari nama Codespace."
     exit 1
 fi
 
-if [ -z "$OWNER_SECRET" ]; then
+if [ -z "$OWNER_SECRET_CHECK" ]; then
     echo "❌ ERROR: Secret owner yang sesuai tidak ditemukan!"
     exit 1
 fi
@@ -34,9 +34,9 @@ if [ -z "$wallet_dirs" ]; then
     exit 1
 fi
 
-IFS=',' read -r -a owners <<< "$OWNER_SECRET"
-main_owner=${owners[0]}
-echo "✅ Menggunakan Owner Address utama untuk allowlist: $main_owner"
+# Untuk OWNERS_ALLOWLIST, kita gabungkan semua owner dari kedua grup
+ALL_OWNERS="$OWNERS_CS1,$OWNERS_CS2"
+echo "✅ Menggunakan semua 12 owner address untuk allowlist."
 
 export MNTESTNET_IMAGE=us-east4-docker.pkg.dev/mawarinetwork-dev/mwr-net-d-car-uses4-public-docker-registry-e62e/mawari-node:latest
 
@@ -56,7 +56,7 @@ for dir in $wallet_dirs; do
             --name "$container_name" \
             --pull always \
             -v "${dir}:/app/cache" \
-            -e OWNERS_ALLOWLIST="$main_owner" \
+            -e OWNERS_ALLOWLIST="$ALL_OWNERS" \
             $MNTESTNET_IMAGE
         
         echo "   ✅ Container ${container_name} dimulai."
