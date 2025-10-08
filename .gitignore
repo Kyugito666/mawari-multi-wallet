@@ -1,0 +1,38 @@
+# ==================================
+# File-file dari Proyek Sebelumnya
+# ==================================
+# Data runtime node
+mawari_data/
+.nexus/
+
+# OS & IDE specific
+Thumbs.db
+Desktop.ini
+.DS_Store
+*~
+.vscode/
+.idea/
+*.swp
+
+# ==================================
+# File Spesifik Proyek Baru
+# ==================================
+# File sensitif - JANGAN PERNAH DI-COMMIT!
+tokens.json
+
+# File state & cache dari Orchestrator
+state.json
+token_cache.json
+
+# File output dari skrip Python
+usernames.txt
+
+# File log
+*.log
+setup.log
+autostart.log
+
+# File hasil kompilasi Rust
+target/
+Cargo.lock
+**/*.rs.bk
